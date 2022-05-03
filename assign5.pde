@@ -586,7 +586,7 @@ void addTime(float seconds){          // Requirement #2
 
 String convertFramesToTimeString(int frames){  // Requirement #4
    frames = gameTimer; 
-   return  nf((frames/3600),2)+":" +nf((frames/60-(frames/3600)*60),2);   
+   return  nf((frames/3600),2)+":" +nf((frames/60- (int(frames/3600)*60)),2);   
 }
 
 color getTimeTextColor(int frames){        // Requirement #5
