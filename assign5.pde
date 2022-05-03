@@ -587,7 +587,7 @@ void addTime(float seconds){          // Requirement #2
 String convertFramesToTimeString(int frames){  // Requirement #4
    frames = gameTimer; 
    int min = int(frames/3600) ;
-   int sec = frames/60 - int(frames/3600)*60;
+   int sec = int(frames/60) - int(frames/3600)*60;
    return  nf(min,2)+":"+nf(sec,2);   
 }
  
