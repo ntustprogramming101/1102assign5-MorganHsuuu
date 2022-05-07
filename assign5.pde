@@ -219,7 +219,7 @@ boolean isExist(float cabbageX,float cabbageY,float clockX,float clockY){
 //} 
 boolean isHit(float x1,float x2,float y1,float y2){
       // Requirement #3: Use boolean isHit(...) to detect collision   ////////////
-      if(playerHealth < PLAYER_MAX_HEALTH
+      if(playerHealth <= PLAYER_MAX_HEALTH
         && x1 + SOIL_SIZE > x2   // r1 right edge past r2 left
         && x1 < x2 + SOIL_SIZE    // r1 left edge past r2 right
         && y1 + SOIL_SIZE > y2   // r1 top edge past r2 bottom
