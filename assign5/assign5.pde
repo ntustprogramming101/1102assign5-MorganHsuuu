@@ -219,7 +219,7 @@ boolean isExist(float cabbageX,float cabbageY,float clockX,float clockY){
 //} 
 boolean isHit(float x1,float x2,float y1,float y2){
       // Requirement #3: Use boolean isHit(...) to detect collision   ////////////
-      if(playerHealth < PLAYER_MAX_HEALTH
+      if(playerHealth <= PLAYER_MAX_HEALTH
         && x1 + SOIL_SIZE > x2   // r1 right edge past r2 left
         && x1 < x2 + SOIL_SIZE    // r1 left edge past r2 right
         && y1 + SOIL_SIZE > y2   // r1 top edge past r2 bottom
@@ -586,9 +586,11 @@ void addTime(float seconds){          // Requirement #2
 
 String convertFramesToTimeString(int frames){  // Requirement #4
    frames = gameTimer; 
-   return  nf((frames/3600),2)+":" +nf((frames/60-(frames/3600)*60),2);   
+   int min = int(frames/3600) ;
+   int sec = int(frames/60) - int(frames/3600)*60;
+   return  nf(min,2)+":"+nf(sec,2);   
 }
-
+ 
 color getTimeTextColor(int frames){        // Requirement #5
  //frames = gameTimer; 
   if (frames>=120*60){
@@ -621,7 +623,7 @@ int getEnemyIndexByRow(int row){        // Requirement #6
 
 void drawCaution(){                // Requirement #6
   // Draw a caution sign above the enemy under the screen using int getEnemyIndexByRow(int row) 
-    println(getEnemyIndexByRow(playerRow));
+   // println(getEnemyIndexByRow(playerRow));
     if(getEnemyIndexByRow(playerRow)>=0){
     //getEnemyIndexByRow(thatRow);
        image(caution,soldierX[getEnemyIndexByRow(playerRow)],soldierY[getEnemyIndexByRow(playerRow)]-80);
