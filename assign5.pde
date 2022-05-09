@@ -320,12 +320,13 @@ void draw() {
       image(cabbage, cabbageX[i], cabbageY[i]);
 
       // Requirement #3: Use boolean isHit(...) to detect collision
-      if(isHit(cabbageX[i], playerX, cabbageY[i], playerY)) {
-          playerHealth ++;
-          cabbageX[i] = cabbageY[i] = -1000;
+      if(playerHealth<5){      
+        if(isHit(cabbageX[i], playerX, cabbageY[i], playerY)) {
+            playerHealth ++;
+            cabbageX[i] = cabbageY[i] = -1000;
+        }
       }
     }
-
     // Requirement #1: Clocks
     // --- Requirement #3: Use boolean isHit(...) to detect clock <-> player collision
     // clock
@@ -498,6 +499,9 @@ void draw() {
     drawTimerUI();
 
     // Health UI
+    if(playerHealth>=5){
+      playerHealth=5;
+    }
     for(int i = 0; i < playerHealth; i++){
       image(life, 10 + i * 70, 10);
     }
@@ -522,7 +526,6 @@ void draw() {
     }else{
 
       image(restartNormal, START_BUTTON_X, START_BUTTON_Y);
-
     }
     break;
 
@@ -586,11 +589,9 @@ void addTime(float seconds){          // Requirement #2
 
 String convertFramesToTimeString(int frames){  // Requirement #4
    frames = gameTimer; 
-   int min = int(frames/3600) ;
-   int sec = int(frames/60) - int(frames/3600)*60;
-   return  nf(min,2)+":"+nf(sec,2);   
+   return  nf((frames/3600),2)+":" +nf((frames/60-(frames/3600)*60),2);   
 }
- 
+
 color getTimeTextColor(int frames){        // Requirement #5
  //frames = gameTimer; 
   if (frames>=120*60){
@@ -623,7 +624,7 @@ int getEnemyIndexByRow(int row){        // Requirement #6
 
 void drawCaution(){                // Requirement #6
   // Draw a caution sign above the enemy under the screen using int getEnemyIndexByRow(int row) 
-   // println(getEnemyIndexByRow(playerRow));
+    //println(getEnemyIndexByRow(playerRow));
     if(getEnemyIndexByRow(playerRow)>=0){
     //getEnemyIndexByRow(thatRow);
        image(caution,soldierX[getEnemyIndexByRow(playerRow)],soldierY[getEnemyIndexByRow(playerRow)]-80);
